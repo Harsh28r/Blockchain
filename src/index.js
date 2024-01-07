@@ -18,6 +18,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+
 // import { useEf fect } from 'react';
 
 // styles for this kit
@@ -31,7 +32,8 @@ import NucleoIcons from "views/NucleoIcons.js";
 import SignUpPage from "views/index-sections/SignUp";
 import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
-// import BloodbankHome from "views/index-sections/BloodbankHome"
+import BloodbankHome from "views/index-sections/BloodbankHome"
+// import HospitalHome from "views/index-sections/HospitalHome";
 // import Timeline from "views/index-sections/Timeline";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -57,7 +59,8 @@ root.render(
 
 
       
-      {/* <Route path="/login-page" element={<BloodbankHome />} /> */}
+      <Route path="/bloodbankHome" element={<BloodbankHome />} />
+      {/* <Route path="/HospitalHome" element={< HospitalHome />} /> */}
       {/* <Route path="/bloodbankhome"
           render={(props) => <BloodbankHome {...props} />}/> */}
       {/* <Route path="/tracking-page" element={<Timeline />} /> */}
