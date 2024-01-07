@@ -26,7 +26,7 @@ import Top from "./Top/Top.js";
 // import ToggleSwitch from "./Top/ToggleSwitch/ToggleSwitch.js";   
 // import Examples from "./index-sections/Examples.js";
 // import LoginPage from "./index-sections/LoginPage.js";
-import ProfilePageHeader from "../components/profilePageHeader.js"
+// import ProfilePageHeader from "../components/profilePageHeader.js"
 // import BloodbankHome from "../views/index-sections/BloodbankHome.js"
 
 
@@ -66,7 +66,7 @@ function Index() {
           <Examples />
           <Download /> */}
           <Carousel />
-          <ProfilePageHeader/>
+          {/* <ProfilePageHeader/> */}
           <SignUp />
           
            {/* <BloodbankHome/> */}
