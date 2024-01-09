@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
+// import React, { useContext } from "react";
 // import { useHistory } from "react-router-dom";
-import BlockchainContext from "../context/BlockChainContext";
+// import BlockchainContext from "../context/BlockChainContext";
 // import globalContext from "../context/GlobalContext";
 
 // import MyTimeLine from "react-timeline-vertical-component";
-import GetInfoFromAadhar from "components/AadharApi.js";
+// import GetInfoFromAadhar from "components/AadharApi.js";
+import IndexsNavbar from "components/Navbars/IndexNavbar";
+
 
 // reactstrap components
 import {
@@ -23,10 +26,10 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "components/ExamplesNavbar.js";
+// import ExamplesNavbar from "components/IndexNavbar.js";
 
 function Timeline(props) {
-  const {   contract } = useContext(BlockchainContext);
+  // const {   contract } = useContext(BlockchainContext);
   // const { SET_USER } = useContext(globalContext);
 
   const [firstFocus, setFirstFocus] = React.useState(false);
@@ -36,7 +39,7 @@ function Timeline(props) {
   const [adhar_in, setAdhar_in] = React.useState("4597 5546 4659");
   const [bldid_in, setBldid_in] = React.useState("00a41088");
   const [show, setShow] = React.useState(false);
-  const [timelineData, setTimelineData] = React.useState([]);
+  const [timelineData] = React.useState([]);
 
   React.useEffect(() => {
     document.body.classList.add("login-page");
@@ -58,106 +61,106 @@ function Timeline(props) {
     }
   };
 
-  const formSubmit = async (e) => {
-    e.preventDefault();
-    if (adhar_in.trim() !== "" && bldid_in.trim() !== "") {
-      let temp_adhar = adhar_in.trim().toLowerCase().replaceAll(" ", "");
-      let temp_bldid = bldid_in.trim().toLowerCase();
+  // const formSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (adhar_in.trim() !== "" && bldid_in.trim() !== "") {
+  //     let temp_adhar = adhar_in.trim().toLowerCase().replaceAll(" ", "");
+  //     let temp_bldid = bldid_in.trim().toLowerCase();
 
-      try {
-        var b_count = await contract.methods.getBloodCount().call();
-        console.log("Finding blood");
-        let temp_tl = [];
-        for (let i = 1; i <= b_count; ++i) {
-          const tag = await contract.methods.getBlood(i).call();
+  //     try {
+  //       var b_count = await contract.methods.getBloodCount().call();
+  //       console.log("Finding blood");
+  //       let temp_tl = [];
+  //       for (let i = 1; i <= b_count; ++i) {
+  //         const tag = await contract.methods.getBlood(i).call();
 
-          if (
-            tag["0"].trim().toLowerCase() === temp_bldid &&
-            tag["2"].trim().toLowerCase().replaceAll(" ", "") === temp_adhar
-          ) {
-            console.log("tag", tag);
-            const tag1 = await contract.methods.getBlood2(i).call();
-            for (let j = 1; j <= tag1["1"]; j++) {
-              const tag2 = await contract.methods.getStatus(i, j).call();
-              let a = new Date(1000 * tag2["0"]);
-              let b = GetInfoFromAadhar(adhar_in.trim())["Name"];
-              let c =
-                tag2["3"] === "0"
-                  ? "Not Verified"
-                  : tag2["3"] === "1"
-                  ? "Tested and Safe"
-                  : "Tested and Unsafe";
-              if (j % 2) {
-                var d =
-                  "𝗡𝗮𝗺𝗲 : " +
-                  b +
-                  ". " +
-                  "⠀".repeat(2) +
-                  "\n𝗕𝗮𝘁𝗰𝗵 𝗡𝗼 : " +
-                  tag["1"] +
-                  ". " +
-                  "⠀".repeat(10) +
-                  " 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗖𝗼𝗿𝗱 : " +
-                  tag2["1"] +
-                  ". " +
-                  "𝗦𝘁𝗮𝘁𝘂𝘀 : " +
-                  c;
-              } else {
-                var d =
-                  "𝗡𝗮𝗺𝗲 : " +
-                  b +
-                  ". " +
-                  "⠀".repeat(12) +
-                  "\n𝗕𝗮𝘁𝗰𝗵 𝗡𝗼 : " +
-                  tag["1"] +
-                  ". " +
-                  " 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗖𝗼𝗿𝗱 : " +
-                  tag2["1"] +
-                  ". " +
-                  "𝗦𝘁𝗮𝘁𝘂𝘀 : " +
-                  c;
-              }
-              temp_tl.push({
-                text: d,
-                //  40+
-                // tag2["2"] +
-                // ,
-                date:
-                  a
-                    .toLocaleString("en-GB")
-                    .split(" ")[0]
-                    .replaceAll("/", " / ")
-                    .substring(0, 14) +
-                  " at " +
-                  a.toLocaleString("en-US", {
-                    hour: "numeric",
-                    minute: "numeric",
-                    hour12: true,
-                  }),
-                linkTitle: "Blood at " + tag2["2"],
-              });
-            }
-            setTimelineData(temp_tl);
-            toggleShow();
-            console.log("temp_tl", temp_tl);
-            break;
-          }
-        }
-        if (temp_tl.length === 0) {
-          alert(`${"No Data Found"}`);
-        }
-      } catch (err) {
-        console.log("Error in getting blood", err);
-        alert(`${"Enter Valid credentials"}`);
-      }
-    } else {
-      alert(`${"Enter Valid credentials"}`);
-    }
-  };
+  //         if (
+  //           tag["0"].trim().toLowerCase() === temp_bldid &&
+  //           tag["2"].trim().toLowerCase().replaceAll(" ", "") === temp_adhar
+  //         ) {
+  //           console.log("tag", tag);
+  //           const tag1 = await contract.methods.getBlood2(i).call();
+  //           for (let j = 1; j <= tag1["1"]; j++) {
+  //             const tag2 = await contract.methods.getStatus(i, j).call();
+  //             let a = new Date(1000 * tag2["0"]);
+  //             let b = GetInfoFromAadhar(adhar_in.trim())["Name"];
+  //             let c =
+  //               tag2["3"] === "0"
+  //                 ? "Not Verified"
+  //                 : tag2["3"] === "1"
+  //                 ? "Tested and Safe"
+  //                 : "Tested and Unsafe";
+  //             if (j % 2) {
+  //               var d =
+  //                 "𝗡𝗮𝗺𝗲 : " +
+  //                 b +
+  //                 ". " +
+  //                 "⠀".repeat(2) +
+  //                 "\n𝗕𝗮𝘁𝗰𝗵 𝗡𝗼 : " +
+  //                 tag["1"] +
+  //                 ". " +
+  //                 "⠀".repeat(10) +
+  //                 " 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗖𝗼𝗿𝗱 : " +
+  //                 tag2["1"] +
+  //                 ". " +
+  //                 "𝗦𝘁𝗮𝘁𝘂𝘀 : " +
+  //                 c;
+  //             } else {
+  //               var d =
+  //                 "𝗡𝗮𝗺𝗲 : " +
+  //                 b +
+  //                 ". " +
+  //                 "⠀".repeat(12) +
+  //                 "\n𝗕𝗮𝘁𝗰𝗵 𝗡𝗼 : " +
+  //                 tag["1"] +
+  //                 ". " +
+  //                 " 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗖𝗼𝗿𝗱 : " +
+  //                 tag2["1"] +
+  //                 ". " +
+  //                 "𝗦𝘁𝗮𝘁𝘂𝘀 : " +
+  //                 c;
+  //             }
+  //             temp_tl.push({
+  //               text: d,
+  //               //  40+
+  //               // tag2["2"] +
+  //               // ,
+  //               date:
+  //                 a
+  //                   .toLocaleString("en-GB")
+  //                   .split(" ")[0]
+  //                   .replaceAll("/", " / ")
+  //                   .substring(0, 14) +
+  //                 " at " +
+  //                 a.toLocaleString("en-US", {
+  //                   hour: "numeric",
+  //                   minute: "numeric",
+  //                   hour12: true,
+  //                 }),
+  //               linkTitle: "Blood at " + tag2["2"],
+  //             });
+  //           }
+  //           setTimelineData(temp_tl);
+  //           toggleShow();
+  //           console.log("temp_tl", temp_tl);
+  //           break;
+  //         }
+  //       }
+  //       if (temp_tl.length === 0) {
+  //         alert(`${"No Data Found"}`);
+  //       }
+  //     } catch (err) {
+  //       console.log("Error in getting blood", err);
+  //       alert(`${"Enter Valid credentials"}`);
+  //     }
+  //   } else {
+  //     alert(`${"Enter Valid credentials"}`);
+  //   }
+  // };
 
   return (
     <>
-      <ExamplesNavbar urlname="login-page" />
+      <IndexsNavbar urlname="login-page" />
       <div className="wrapper">
         <div
           className="page-header clear-filter"
@@ -231,7 +234,7 @@ function Timeline(props) {
                         block
                         className="btn-round"
                         color="info"
-                        onClick={formSubmit}
+                        // onClick={formSubmit}
                       >
                         Track History
                       </Button>
@@ -248,11 +251,11 @@ function Timeline(props) {
           hidden={!show}
           // onClick={toggleShow}
           className="page-header-image pt-5 pb-5 justify-content-center"
-          style={{
-            color: "black",
-            backgroundImage:
-              "url(" + require("assets/img/bg4.jpeg").default + ")",
-          }}
+          // style={{
+          //   color: "black",
+          //   backgroundImage:
+          //     "url(" + require("assets/img/bg4.jpeg") + ")",
+          // }}
         >
           {/* <MyTimeLine timelineData={timelineData} /> */}
           <div className="row align-items-center justify-content-center">

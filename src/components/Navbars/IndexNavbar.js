@@ -88,7 +88,7 @@ function IndexNavbar() {
               <NavItem>
                 <NavLink
                       to={{
-                        pathname: "/login-page",
+                        pathname: "/Tracking",
                         aboutProps: {
                           name: "Hospital",
                         },
@@ -106,7 +106,7 @@ function IndexNavbar() {
                       to={{
                         pathname: "/login-page",
                         aboutProps: {
-                          name: "Hospital",
+                          name: "Bloodbank",
                         },
                       }}
                       tag={Link}
@@ -115,10 +115,10 @@ function IndexNavbar() {
                     </NavLink>
               </NavItem>
               </NavItem>
-
+                 <NavItem>
               <NavLink
                       to={{
-                        pathname: "/login-page",
+                        pathname: "/HospitalHome",
                         aboutProps: {
                           name: "Hospital",
                         },
@@ -127,7 +127,7 @@ function IndexNavbar() {
                     >
                       Login as Hospital
                     </NavLink>
-                  
+                    </NavItem>
               <NavItem>
                 <NavLink
                   href="/"

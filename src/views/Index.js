@@ -23,12 +23,13 @@ import Carousel from "./index-sections/Carousel.js";
 // import CompleteExamples from "./index-sections/CompleteExamples.js";
 import SignUp from "./index-sections/SignUp.js";
 import Top from "./Top/Top.js";
+// import Timeline from "./index-sections/Timeline.js";
 // import ToggleSwitch from "./Top/ToggleSwitch/ToggleSwitch.js";   
 // import Examples from "./index-sections/Examples.js";
 // import LoginPage from "./index-sections/LoginPage.js";
 // import ProfilePageHeader from "../components/profilePageHeader.js"
 // import BloodbankHome from "../views/index-sections/BloodbankHome.js"
-
+// import BloodIntake from "../views/index-sections/BloodIntakePage.js"
 
 function Index() {
   React.useEffect(() => {
@@ -44,7 +45,7 @@ function Index() {
   });
   return (
     <>
-      <IndexNavbar />
+     
       <div className="wrapper">
         <IndexHeader />
         <div className="main">
@@ -68,6 +69,7 @@ function Index() {
           <Carousel />
           {/* <ProfilePageHeader/> */}
           <SignUp />
+          {/* <BloodIntake/> */}
           
            {/* <BloodbankHome/> */}
           {/* <LoginPage/> */}

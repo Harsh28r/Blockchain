@@ -55,10 +55,10 @@ import IndexNavbar from "components/Navbars/IndexNavbar";
   const handleLogin = () => {
     if (location && location.aboutProps) {
       const userType = location.aboutProps["name"];
-      if (userType === 'Hospital') {
-        navigate('/hospitalhome');
-      } else if (userType === 'Blood Bank') {
-        navigate('/bloodbankhome');
+      if (userType === "Hospital") {
+        navigate("/HospitalHome");
+      } else if (userType === "Bloodbank") {
+        navigate("/BloodbankHome");
       }
     }
   };

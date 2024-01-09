@@ -34,7 +34,9 @@ import LandingPage from "views/examples/LandingPage.js";
 import ProfilePage from "views/examples/ProfilePage.js";
 import BloodbankHome from "views/index-sections/BloodbankHome"
 // import HospitalHome from "views/index-sections/HospitalHome";
-// import Timeline from "views/index-sections/Timeline";
+import Timeline from "views/index-sections/Timeline";
+import BloodIntake from "views/index-sections/BloodIntakePage";
+import HospitalHome from "views/index-sections/HospitalHome"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // const aboutProps = {
@@ -51,8 +53,9 @@ root.render(
       <Route path="/landing-page" element={<LandingPage />} />
       <Route path="/profile-page" element={<ProfilePage />} />
       <Route path="/login-page" element={<SignUpPage />} />
-
-
+      <Route path="/Tracking" element={<Timeline />} />
+      <Route path="/bloodIntake" element={<BloodIntake />} />
+      <Route path="/HospitalHome" element={<HospitalHome />} />
       // Assuming you have aboutProps defined somewhere
 
 {/* <Route path="/login-page" element={<SignUpPage location={{ aboutProps }} />} /> */}
